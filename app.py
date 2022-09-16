@@ -12,7 +12,7 @@ LOG.setLevel(logging.INFO)
 @app.route("/")
 def home():
     html = r"""<h3>Diabetes prediction API.</h3>
-    Input for the /predict route looks like:<br>
+    Input for the /predict route looks like: (testing deploy)<br>
     {{<br>
     'preg':1,<br>
     'plas':93,<br>
