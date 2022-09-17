@@ -37,8 +37,19 @@ To serve a prediction against the application, run the `python utilscli.py predi
 ![image](https://user-images.githubusercontent.com/1559328/190717133-cf3c8d6e-2fee-4d2c-a2bf-caecaac3ff63.png)
 
 #### Containerized Microservice
-Prior to running this project a containerized microservice, create a `private container` on AWS ECR like this:
+Prior to running this project as a containerized microservice, create a `private container` on AWS ECR like this:
 
 ![image](https://user-images.githubusercontent.com/1559328/190718421-9d563d5c-262d-403a-925e-310ec54b2789.png)
 
-This repo is configured for auto-deploy its container with GitHub Actions. Check `aws-ecr.yml`...
+This repo is configured for auto-deploy its container with GitHub Actions. As such, its workflow `aws-ecr.yml` uses the following parameters: `secrets.AWS_ACCESS_KEY_ID`, `secrets.AWS_SECRET_ACCESS_KEY`, and `secrets.REPO_NAME`. Configure them in the settings of this repo (`Secrets > Actions > New repo secret`). Those data must rely on an IAM user with appropriate permissions set (next topic).
+
+##### Creating an IAM User on AWS
+
+Create an IAM user like images below:
+
+![image](https://user-images.githubusercontent.com/1559328/190834440-98e95dd7-d56f-44fb-9ef6-ed6fe38a25b4.png)
+
+![image](https://user-images.githubusercontent.com/1559328/190834490-a1adf841-54fc-4ce4-b0c3-1234c0251157.png)
+
+At the end, download the credentials as `.csv`. Input info from this file in the previous parameters `AWS_ACCESS_KEY_ID` and `AWS_SECRET_ACCESS_KEY` (`REPO_NAME` is the repo's name defined during container creation).
+
